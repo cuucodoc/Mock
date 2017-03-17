@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts 
+Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="danhSachDatSanForm" type="form.DanhSachDatSanForm" />
+		<form-bean name="chiTietDatSanForm" type="form.ChiTietDatSanForm" />
+		<form-bean name="datSanForm" type="form.DatSanForm" />
+	</form-beans>
+	<action-mappings>
+		<action input="/menuAdmin.jsp" name="danhSachDatSanForm" path="/danh-sach-dat-san"
+			scope="request" type="action.DanhSachDatSanAction">
+			<forward name="dsDatSan" path="/quanLyDonDatSan.jsp" />
+		</action>
+		<action input="/themDatSan.jsp" name="datSanForm" path="/themDatSan"
+			scope="request" type="action.ThemDatSanAction" validate="true">
+			<forward name="themDatSan" path="/themDatSan.jsp" />
+			<forward name="themDatSanerror" path="/themDatSan.jsp" />
+			<forward name="themDatSanXong" path="/danh-sach-dat-san.do"
+				redirect="true" />
+		</action>
+		<action input="/suaDatSan.jsp" name="datSanForm" path="/suaDS"
+			scope="request" type="action.SuaDatSanAction" validate="true">
+			<forward name="suaDatSan" path="/suaDatSan.jsp" />
+			<forward name="suaDSerror" path="/suaDatSan.jsp" />
+			<forward name="suaDatSanxong" path="/danh-sach-dat-san.do"
+				redirect="true" />
+		</action>
+		<action input="/danh-sach-dat-san.do" name="datSanForm" path="/chiTietDatSan"
+			scope="request" type="action.ChiTietDatSanAction" >
+			<forward name="dsChiTietDatSan" path="/chiTietDatSan.jsp" redirect="true"/>
+		</action>
+		<action input="/danh-sach-dat-san.do" name="datSanForm" path="/xoaDS"
+			scope="request" type="action.XoaDatSanAction" validate="true">
+			<forward name="xoaDatSanError" path="/quanLyDonDatSan.jsp" />
+			<forward name="xoaDatSanxong" path="/danh-sach-dat-san.do"
+				redirect="true" />
+		</action>
+	</action-mappings>
+	
+	<message-resources parameter="action.ApplicationResources" />
+
+</struts-config>
